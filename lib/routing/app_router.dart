@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
-import 'package:test_notes/core/note_model.dart';
+import 'package:test_notes/core/models/note_model.dart';
 import 'package:test_notes/features/home/view/home_screen.dart';
 import 'package:test_notes/features/note/view/note_screen.dart';
 

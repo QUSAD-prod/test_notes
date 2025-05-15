@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_notes/core/note_model.dart';
+import 'package:test_notes/core/models/note_model.dart';
 
 class NoteCard extends StatelessWidget {
   const NoteCard({required this.note, this.onTap, super.key});

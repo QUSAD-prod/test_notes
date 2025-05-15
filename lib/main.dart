@@ -7,7 +7,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:talker_bloc_logger/talker_bloc_logger_observer.dart';
 import 'package:talker_bloc_logger/talker_bloc_logger_settings.dart';
 import 'package:talker_flutter/talker_flutter.dart';
-import 'package:test_notes/core/note_model.dart';
+import 'package:test_notes/core/models/note_model.dart';
 import 'package:test_notes/routing/app_router.dart';
 import 'package:test_notes/test_notes_app.dart';
 
@@ -21,6 +21,9 @@ void main() {
 
       await Hive.initFlutter();
       Hive.registerAdapter(NoteModelAdapter());
+      await Hive.openBox('box');
+
+      GetIt.I.registerSingleton(Hive.box('box'));
 
       final appRouter = AppRouter();
       GetIt.I.registerSingleton(appRouter);

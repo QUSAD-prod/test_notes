@@ -1,9 +1,14 @@
 part of 'note_bloc.dart';
 
-abstract class NoteState {}
+abstract class NoteState {
+  bool errorEnabled = false;
+}
 
 class NoteInitialState extends NoteState {}
 
-class NoteLoadingState extends NoteState {}
+class NoteNormalState extends NoteState {}
 
-class NoteLoadedState extends NoteState {}
+class NoteErrorState extends NoteState {
+  @override
+  final bool errorEnabled = true;
+}

@@ -2,8 +2,10 @@ part of 'note_bloc.dart';
 
 abstract class NoteEvent {}
 
-class NoteSaveEvent extends NoteEvent {}
+class NoteSaveEvent extends NoteEvent {
+  NoteSaveEvent({required this.context});
 
-class NoteAddImageEvent extends NoteEvent {}
+  final BuildContext context;
+}
 
-class NoteChangeImageEvent extends NoteEvent {}
+class NoteTitleChangedEvent extends NoteEvent {}

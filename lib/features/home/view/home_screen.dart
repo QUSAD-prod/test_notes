@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
       bloc: _homeBloc,
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(title: Text("Test Notes App")),
+          appBar: AppBar(title: Text("Заметки")),
           body: SingleChildScrollView(child: Column(mainAxisSize: MainAxisSize.min, children: [])),
           floatingActionButton: FloatingActionButton(
             onPressed: () => GetIt.I<AppRouter>().push(NoteRoute()),
