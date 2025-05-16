@@ -27,10 +27,15 @@ class _NoteScreenState extends State<NoteScreen> {
   void initState() {
     _titleController = TextEditingController();
     _descriptionController = TextEditingController();
+    if (widget.type == NoteScreenType.editNote) {
+      _titleController.text = widget.note!.title;
+      _descriptionController.text = widget.note!.description;
+    }
     _noteBloc = NoteBloc(
       widget.type,
       titleController: _titleController,
       descriptionController: _descriptionController,
+      editIndex: widget.editIndex,
     );
     super.initState();
   }
@@ -43,7 +48,7 @@ class _NoteScreenState extends State<NoteScreen> {
         return Scaffold(
           appBar: AppBar(
             title: Text(
-              widget.type == NoteScreenType.newNote ? "Новая заметка" : widget.note!.title,
+              widget.type == NoteScreenType.newNote ? "Новая заметка" : "Редактировать заметку",
             ),
             actions: [
               IconButton(

@@ -32,11 +32,17 @@ class NoteRoute extends PageRouteInfo<NoteRouteArgs> {
   NoteRoute({
     NoteScreenType type = NoteScreenType.newNote,
     NoteModel? note,
+    int? editIndex,
     Key? key,
     List<PageRouteInfo>? children,
   }) : super(
          NoteRoute.name,
-         args: NoteRouteArgs(type: type, note: note, key: key),
+         args: NoteRouteArgs(
+           type: type,
+           note: note,
+           editIndex: editIndex,
+           key: key,
+         ),
          initialChildren: children,
        );
 
@@ -48,7 +54,12 @@ class NoteRoute extends PageRouteInfo<NoteRouteArgs> {
       final args = data.argsAs<NoteRouteArgs>(
         orElse: () => const NoteRouteArgs(),
       );
-      return NoteScreen(type: args.type, note: args.note, key: args.key);
+      return NoteScreen(
+        type: args.type,
+        note: args.note,
+        editIndex: args.editIndex,
+        key: args.key,
+      );
     },
   );
 }
@@ -57,6 +68,7 @@ class NoteRouteArgs {
   const NoteRouteArgs({
     this.type = NoteScreenType.newNote,
     this.note,
+    this.editIndex,
     this.key,
   });
 
@@ -64,10 +76,12 @@ class NoteRouteArgs {
 
   final NoteModel? note;
 
+  final int? editIndex;
+
   final Key? key;
 
   @override
   String toString() {
-    return 'NoteRouteArgs{type: $type, note: $note, key: $key}';
+    return 'NoteRouteArgs{type: $type, note: $note, editIndex: $editIndex, key: $key}';
   }
 }

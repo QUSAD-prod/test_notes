@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:talker_flutter/talker_flutter.dart';
+import 'package:test_notes/core/repository/app_box.dart';
 import 'package:test_notes/routing/app_router.dart';
 
 class TestNotesApp extends StatefulWidget {
@@ -13,13 +14,19 @@ class TestNotesApp extends StatefulWidget {
 class _TestNotesAppState extends State<TestNotesApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: "Test Notes App",
-      themeMode: ThemeMode.light,
-      theme: ThemeData.light(useMaterial3: true),
-      routerConfig: GetIt.I<AppRouter>().config(
-        navigatorObservers: () => [TalkerRouteObserver(GetIt.I<Talker>())],
-      ),
+    return ValueListenableBuilder(
+      valueListenable: AppBox.getListennableBox(keys: ['themeMode']),
+      builder: (context, box, widget) {
+        return MaterialApp.router(
+          title: "Test Notes App",
+          themeMode: AppBox.getThemeMode(),
+          theme: ThemeData.light(useMaterial3: true),
+          darkTheme: ThemeData.dark(useMaterial3: true),
+          routerConfig: GetIt.I<AppRouter>().config(
+            navigatorObservers: () => [TalkerRouteObserver(GetIt.I<Talker>())],
+          ),
+        );
+      },
     );
   }
 }
