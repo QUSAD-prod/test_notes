@@ -38,40 +38,55 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          body: ValueListenableBuilder(
-            valueListenable: AppBox.getListennableBox(),
-            builder: (context, box, widget) {
-              List<NoteModel> list = AppBox.getNotesWithBox(box);
-              return ListView.builder(
-                itemCount: list.length,
-                itemBuilder: (context, index) {
-                  return Dismissible(
-                    key: Key(index.toString()),
-                    direction: DismissDirection.endToStart,
-                    background: Container(
-                      alignment: Alignment.centerRight,
-                      padding: const EdgeInsets.only(right: 20),
-                      color: Colors.red,
-                      child: const Icon(Icons.delete, color: Colors.white),
-                    ),
-                    onDismissed: (direction) {
-                      _homeBloc.add(HomeDeleteNoteEvent(index: index));
+          body: Stack(
+            children: [
+              Center(
+                child: Opacity(
+                  opacity: 0.25,
+                  child: Text(
+                    "by QUSAD.prod",
+                    style: TextTheme.of(
+                      context,
+                    ).displaySmall?.copyWith(fontWeight: FontWeight.w300),
+                  ),
+                ),
+              ),
+              ValueListenableBuilder(
+                valueListenable: AppBox.getListennableBox(),
+                builder: (context, box, widget) {
+                  List<NoteModel> list = AppBox.getNotesWithBox(box);
+                  return ListView.builder(
+                    itemCount: list.length,
+                    itemBuilder: (context, index) {
+                      return Dismissible(
+                        key: Key(index.toString()),
+                        direction: DismissDirection.endToStart,
+                        background: Container(
+                          alignment: Alignment.centerRight,
+                          padding: const EdgeInsets.only(right: 20),
+                          color: Colors.red,
+                          child: const Icon(Icons.delete, color: Colors.white),
+                        ),
+                        onDismissed: (direction) {
+                          _homeBloc.add(HomeDeleteNoteEvent(index: index));
+                        },
+                        child: GestureDetector(
+                          child: NoteCard(note: list[index]),
+                          onTap:
+                              () => _homeBloc.add(
+                                HomeUpdateNoteTapEvent(
+                                  context: context,
+                                  index: index,
+                                  note: list[index],
+                                ),
+                              ),
+                        ),
+                      );
                     },
-                    child: GestureDetector(
-                      child: NoteCard(note: list[index]),
-                      onTap:
-                          () => _homeBloc.add(
-                            HomeUpdateNoteTapEvent(
-                              context: context,
-                              index: index,
-                              note: list[index],
-                            ),
-                          ),
-                    ),
                   );
                 },
-              );
-            },
+              ),
+            ],
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () => _homeBloc.add(HomeAddNoteTapEvent(context: context)),

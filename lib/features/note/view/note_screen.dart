@@ -70,7 +70,7 @@ class _NoteScreenState extends State<NoteScreen> {
                       onChanged: (string) => _noteBloc.add(NoteTitleChangedEvent()),
                       minLines: 1,
                       maxLines: 4,
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                       decoration: InputDecoration(
                         hintText: "Название заметки...",
                         hintStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
@@ -91,7 +91,7 @@ class _NoteScreenState extends State<NoteScreen> {
                       controller: _descriptionController,
                       minLines: 20,
                       maxLines: 100,
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 14),
                       decoration: InputDecoration.collapsed(hintText: "Текст заметки..."),
                     ),
                   ),

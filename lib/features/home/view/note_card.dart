@@ -32,7 +32,7 @@ class NoteCard extends StatelessWidget {
                   Text(
                     note.description,
                     style: TextStyle(fontSize: 14),
-                    maxLines: 2,
+                    maxLines: 8,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ],
