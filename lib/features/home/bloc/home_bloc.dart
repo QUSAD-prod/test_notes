@@ -22,10 +22,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     });
     on<HomeDeleteNoteEvent>((event, emit) async {
       await AppBox.deleteNote(event.index);
+      emit(HomeLoadedState());
     });
 
     on<HomeChangeThemeEvent>((event, emit) async {
       await AppBox.changeThemeMode();
+      emit(HomeLoadedState());
     });
   }
 }

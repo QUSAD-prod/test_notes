@@ -15,11 +15,11 @@ class _TestNotesAppState extends State<TestNotesApp> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: AppBox.getListennableBox(keys: ['themeMode']),
+      valueListenable: AppBox.getListennableBox(),
       builder: (context, box, widget) {
         return MaterialApp.router(
           title: "Test Notes App",
-          themeMode: AppBox.getThemeMode(),
+          themeMode: AppBox.getThemeModeFromBox(box),
           theme: ThemeData.light(useMaterial3: true),
           darkTheme: ThemeData.dark(useMaterial3: true),
           routerConfig: GetIt.I<AppRouter>().config(

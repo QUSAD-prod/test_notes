@@ -14,6 +14,10 @@ class AppBox {
     return GetIt.I<Box>().get('themeMode', defaultValue: ThemeMode.light);
   }
 
+  static ThemeMode getThemeModeFromBox(Box box) {
+    return box.get('themeMode', defaultValue: ThemeMode.light);
+  }
+
   static Future<void> changeThemeMode() async {
     ThemeMode mode = GetIt.I<Box>().get('themeMode', defaultValue: ThemeMode.light);
     if (mode == ThemeMode.light) {
